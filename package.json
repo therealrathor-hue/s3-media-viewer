@@ -46,7 +46,7 @@
     "zero-config",
     "browser-media"
   ],
-  "author": "Antigravity Engineering",
+  "author": "therealrathore",
   "license": "MIT",
   "dependencies": {
     "heic2any": "^0.0.4"

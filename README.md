@@ -391,4 +391,4 @@ If your bucket hosts HEIC files (for client-side decoding) or extensionless keys
 
 ## License
 
-MIT © Antigravity Engineering
+MIT © therealrathore
