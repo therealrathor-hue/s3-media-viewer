@@ -1,0 +1,61 @@
+{
+  "name": "s3-media-viewer",
+  "version": "1.0.0",
+  "description": "Universal zero-config Web Component to view and play any image, video, or audio from AWS S3 pre-signed URLs with automatic format detection, HEIC conversion, and graceful fallbacks.",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "sideEffects": true,
+  "scripts": {
+    "build": "tsup src/index.ts --format cjs,esm --dts --clean",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "keywords": [
+    "s3",
+    "aws-s3",
+    "signed-url",
+    "presigned-url",
+    "media-viewer",
+    "media-player",
+    "video-player",
+    "audio-player",
+    "image-viewer",
+    "heic",
+    "web-component",
+    "custom-elements",
+    "angular",
+    "react",
+    "vue",
+    "svelte",
+    "vanilla-js",
+    "typescript",
+    "s3-viewer",
+    "s3-player",
+    "zero-config",
+    "browser-media"
+  ],
+  "author": "Antigravity Engineering",
+  "license": "MIT",
+  "dependencies": {
+    "heic2any": "^0.0.4"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.1",
+    "jsdom": "^25.0.1",
+    "tsup": "^8.3.5",
+    "typescript": "^5.7.2",
+    "vitest": "^2.1.8"
+  }
+}

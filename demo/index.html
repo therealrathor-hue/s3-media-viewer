@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>s3-media-viewer - Interactive Demo Playground</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --primary: #2563eb;
+      --bg: #f8fafc;
+      --card: #ffffff;
+      --text: #0f172a;
+      --muted: #64748b;
+      --border: #e2e8f0;
+      --radius: 10px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+      padding: 32px 20px;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    header {
+      margin-bottom: 36px;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 32px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 8px;
+    }
+
+    header p {
+      color: var(--muted);
+      font-size: 16px;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .section-title {
+      font-size: 20px;
+      font-weight: 600;
+      margin: 36px 0 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .section-title span {
+      background: rgba(37, 99, 235, 0.1);
+      color: var(--primary);
+      font-size: 12px;
+      padding: 2px 8px;
+      border-radius: 999px;
+      font-weight: 700;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .demo-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .demo-card h3 {
+      font-size: 15px;
+      font-weight: 600;
+    }
+
+    .demo-card p {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .viewer-box {
+      width: 100%;
+      height: 220px;
+      border-radius: 8px;
+      overflow: hidden;
+      background: rgba(0, 0, 0, 0.02);
+    }
+
+    /* 1. E-Commerce Card */
+    .ecommerce-card {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 16px;
+      max-width: 340px;
+    }
+    .ecommerce-card .price {
+      font-size: 18px;
+      font-weight: 700;
+      color: #0f172a;
+      margin-top: 6px;
+    }
+
+    /* 2. Dark Container (with fill mode) */
+    .dark-container {
+      background: #0f172a;
+      color: #f8fafc;
+      padding: 24px;
+      border-radius: 12px;
+    }
+    .dark-container p {
+      color: #94a3b8;
+    }
+    .dark-container .viewer-box {
+      height: 260px;
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    /* 3. Custom Branded Containers */
+    .branded-emerald {
+      --s3-viewer-accent: #059669;
+      --s3-viewer-accent-hover: #047857;
+      --s3-viewer-radius: 16px;
+    }
+
+    .branded-purple {
+      --s3-viewer-accent: #7c3aed;
+      --s3-viewer-accent-hover: #6d28d9;
+      --s3-viewer-radius: 6px;
+    }
+  </style>
+
+  <!-- Load bundled web component from dist -->
+  <script type="module" src="../dist/index.js"></script>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <h1>s3-media-viewer</h1>
+      <p>Universal zero-config web component for images, video, audio, HEIC, and documents with pure white modal views.</p>
+    </header>
+
+    <!-- Section 1: E-Commerce Product Card -->
+    <div class="section-title">
+      1. E-Commerce Product Gallery Card
+      <span>Click image to open white modal</span>
+    </div>
+    <div class="ecommerce-card">
+      <div class="viewer-box">
+        <s3-media-viewer
+          src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=800&auto=format&fit=crop&q=80"
+          filename="Nike Air Max Sport Edition.jpg"
+          modal
+          click-to-modal
+          fit="cover"
+        ></s3-media-viewer>
+      </div>
+      <div style="margin-top: 12px;">
+        <span style="font-size: 11px; text-transform: uppercase; font-weight: 700; color: #64748b;">Footwear</span>
+        <h4 style="font-size: 15px; font-weight: 600; margin-top: 2px;">Nike Air Max 270 Red</h4>
+        <div class="price">$149.99</div>
+      </div>
+    </div>
+
+    <!-- Section 2: Dark Theme Host & Fill Mode -->
+    <div class="section-title">
+      2. Dark Host Container & Fill Mode
+      <span>Modal opens with pure white dialog</span>
+    </div>
+    <div class="dark-container">
+      <h3>Customer Inspection Attachment (Fill Mode)</h3>
+      <p style="margin-bottom: 14px;">Component inside a dark host layout automatically blends without awkward white boxes, while its lightbox modal opens in pure white.</p>
+      <div class="viewer-box">
+        <s3-media-viewer
+          theme="dark"
+          fill
+          src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=800&auto=format&fit=crop&q=80"
+          filename="Security-Log-Report.jpg"
+          modal
+          click-to-modal
+        ></s3-media-viewer>
+      </div>
+    </div>
+
+    <!-- Section 3: Brand-Themed Custom Styling -->
+    <div class="section-title">
+      3. Custom Brand Theming
+      <span>CSS Variables: --s3-viewer-accent & --s3-viewer-radius</span>
+    </div>
+    <div class="grid">
+      <div class="demo-card branded-emerald">
+        <h3>Emerald Green Brand Theme</h3>
+        <p>Using <code>--s3-viewer-accent: #059669; --s3-viewer-radius: 16px;</code></p>
+        <div class="viewer-box">
+          <s3-media-viewer
+            src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&auto=format&fit=crop&q=80"
+            filename="Emerald Coast Landscape.jpg"
+            modal
+            click-to-modal
+          ></s3-media-viewer>
+        </div>
+      </div>
+
+      <div class="demo-card branded-purple">
+        <h3>Royal Purple Brand Theme</h3>
+        <p>Using <code>--s3-viewer-accent: #7c3aed; --s3-viewer-radius: 6px;</code></p>
+        <div class="viewer-box">
+          <s3-media-viewer
+            src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop&q=80"
+            filename="Microchip Hardware Tech.jpg"
+            modal
+            click-to-modal
+          ></s3-media-viewer>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 4: All Media Types Side-by-Side -->
+    <div class="section-title">
+      4. Media Formats Side-by-Side
+      <span>Images, Video, Audio, Document & Fallback</span>
+    </div>
+    <div class="grid">
+      <!-- Image Card -->
+      <div class="demo-card">
+        <h3>Standard Image (JPG / WebP / HEIC)</h3>
+        <p>Zero layout shift with zoom & modal.</p>
+        <div class="viewer-box">
+          <s3-media-viewer
+            src="https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?w=800&auto=format&fit=crop&q=80"
+            filename="Modern Painting Art.webp"
+            modal
+            click-to-modal
+          ></s3-media-viewer>
+        </div>
+      </div>
+
+      <!-- Video Card -->
+      <div class="demo-card">
+        <h3>Inline Video Player (MP4)</h3>
+        <p>Plays inline on iOS Safari with muted autoplay.</p>
+        <div class="viewer-box">
+          <s3-media-viewer
+            src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4"
+            filename="ForBiggerBlazes.mp4"
+            controls
+            modal
+            muted
+          ></s3-media-viewer>
+        </div>
+      </div>
+
+      <!-- Audio Card -->
+      <div class="demo-card">
+        <h3>Waveform Audio Card (MP3)</h3>
+        <p>Adaptive container with soundwave bars.</p>
+        <div class="viewer-box">
+          <s3-media-viewer
+            src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
+            filename="SoundHelix-Song-1.mp3"
+            controls
+            modal
+            click-to-modal
+          ></s3-media-viewer>
+        </div>
+      </div>
+
+      <!-- Fallback Card -->
+      <div class="demo-card">
+        <h3>Legacy / Unsupported (.AVI)</h3>
+        <p>Graceful fallback card with direct download.</p>
+        <div class="viewer-box">
+          <s3-media-viewer
+            src="https://example.com/legacy_archive_tape.avi"
+            filename="legacy_archive_tape.avi"
+            modal
+          ></s3-media-viewer>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
